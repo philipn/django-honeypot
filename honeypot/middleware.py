@@ -38,10 +38,14 @@ class HoneypotResponseMiddleware(object):
                 value = getattr(settings, 'HONEYPOT_VALUE', '')
                 if callable(value):
                     value = value()
+
+                use_js_field = getattr(settings, 'HONEYPOT_USE_JS_FIELD', False)
                 return mark_safe(match.group() +
                                  render_to_string('honeypot/honeypot_field.html',
                                                   {'fieldname': settings.HONEYPOT_FIELD_NAME,
-                                                   'value': value}))
+                                                   'value': value,
+                                                   'use_js_field': use_js_field,
+                                                   'display_script_tags': True}))
 
             # Modify any POST forms
             response.content = _POST_FORM_RE.sub(add_honeypot_field, force_text(response.content))
