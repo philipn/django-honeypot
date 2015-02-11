@@ -4,7 +4,7 @@ long_description = open('README.rst').read()
 
 setup(
     name='django-honeypot',
-    version="0.4.0-3",
+    version="0.4.0.post3",
     package_dir={'honeypot': 'honeypot'},
     packages=['honeypot', 'honeypot.templatetags'],
     description='Django honeypot field utilities',
